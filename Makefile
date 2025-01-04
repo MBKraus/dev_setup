@@ -13,7 +13,7 @@ install-lazyvim:
 	
 install-osx:
 	brew update
-	brew install neovim
+	brew install neovim ripgrep
 	make install-lazyvim
 
 install-linux:
