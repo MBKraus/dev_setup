@@ -13,13 +13,14 @@ install-lazyvim:
 	
 install-osx:
 	brew update
-	brew install neovim ripgrep
+	brew install neovim ripgrep fd
 	make install-lazyvim
 
 install-linux:
 	sudo apt update
 	sudo chown jupyter:mollievertex ~/.bashrc
 	sudo chown jupyter:mollievertex ~/.bash_profile
+	sudo apt install ripgrep fd-find xsel
 #   install neovim
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 	sudo rm -rf /opt/nvim
