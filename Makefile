@@ -1,4 +1,4 @@
-.PHONY: install-osx
+.PHONY: install-lazyvim, install-osx, install-linux
 
 install-lazyvim:
 	rm -rf ~/.config/nvim
@@ -12,9 +12,12 @@ install-lazyvim:
 	pip install python-lsp-ruff==2.2.2 --user
 	
 install-osx:
+	echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
 	brew update
-	brew install neovim ripgrep fd
+	brew install neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
+	rm -rf ~/alacritty/
+	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
 
 install-linux:
 	sudo apt update
