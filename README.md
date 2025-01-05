@@ -1,4 +1,4 @@
-## Neovim + lazyvim + Alacritty along the following setup:
+## Neovim + lazyvim + Alacritty + Tmux along the following setup:
 
 
 - Python LSP Server (pylsp) ; a language server implementation for Python that adheres  to the Language Server Protocol (LSP). It provides essential language features for Python development, including:
