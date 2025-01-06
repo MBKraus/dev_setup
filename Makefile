@@ -11,16 +11,18 @@ install-lazyvim:
 	pip install python-lsp-isort==0.2.0 --user
 	pip install python-lsp-ruff==2.2.2 --user
 
-install-tmux-plugin-manager:
+install-tmux:
+	ln -sf $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 	rm -rf ~/.tmux/plugins/tpm
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	tmux source-file ~/.tmux.conf
 	
 install-osx:
 	echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
 	brew update
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
-	make install-tmux-plugin-manager
+	make install-tmux
 	rm -rf ~/alacritty/
 	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
 
@@ -43,4 +45,4 @@ install-linux:
 	. $(HOME)/.cargo/env && cargo install alacritty
 # tmux
 	sudo apt install tmux
-	make install-tmux-plugin-manager
+	make install-tmux
