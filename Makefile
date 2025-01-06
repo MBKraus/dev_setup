@@ -18,7 +18,7 @@ install-tmux:
 	tmux source-file ~/.tmux.conf
 	
 install-osx:
-	echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
+	grep -qxF 'export XDG_CONFIG_HOME="~/.config"' ~/.bashrc || echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
 	brew update
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
@@ -30,6 +30,7 @@ install-linux:
 	sudo apt update
 	sudo chown jupyter:mollievertex ~/.bashrc
 	sudo chown jupyter:mollievertex ~/.bash_profile
+	sudo chown jupyter:mollievertex /home/jupyter/.local/bin
 # neovim
 	sudo apt install ripgrep fd-find xsel libfontconfig1-dev libfontconfig
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -40,7 +41,7 @@ install-linux:
 # lazyvim
 	install-lazyvim
 # alacritty
-	apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+	sudo apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	. $(HOME)/.cargo/env && cargo install alacritty
 # tmux
