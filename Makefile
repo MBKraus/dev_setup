@@ -18,6 +18,7 @@ install-tmux:
 	tmux source-file ~/.tmux.conf
 	
 install-osx:
+	chsh -s /bin/bash
 	grep -qxF 'export XDG_CONFIG_HOME="~/.config"' ~/.bashrc || echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
 	brew update
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
