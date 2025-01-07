@@ -24,7 +24,7 @@ install-osx:
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
 	make install-tmux
-	rm -rf ~/alacritty/
+	rm -rf ~/.config/alacritty
 	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
 
 install-linux:
