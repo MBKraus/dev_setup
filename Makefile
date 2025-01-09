@@ -12,13 +12,15 @@ install-lazyvim:
 	pip install python-lsp-ruff==2.2.2 --user
 
 install-tmux:
-	ln -sf $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
+	rm -rf ~/.tmux.conf
 	rm -rf ~/.tmux/plugins/tpm
+	ln -sf $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	tmux source-file ~/.tmux.conf
 	
 install-osx:
 	chsh -s /bin/bash
+	grep -qxF "# macOS key config" ~/.bashrc || { echo -e "\n# macOS key config\n"; cat $(CURDIR)/bash/macos-key-config.sh >> ~/.bashrc; }
 	grep -qxF 'export XDG_CONFIG_HOME="~/.config"' ~/.bashrc || echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
 	brew update
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
