@@ -42,7 +42,7 @@ install-linux:
 	sudo echo 'export PATH="$(PATH):/opt/nvim-linux64/bin"' >> ~/.bashrc
 	sudo echo 'export PATH="$(PATH):/opt/nvim-linux64/bin"' >> ~/.bash_profile
 # lazyvim
-	install-lazyvim
+	make install-lazyvim
 # alacritty
 	sudo apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
