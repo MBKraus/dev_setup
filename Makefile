@@ -20,9 +20,7 @@ install-tmux:
 	
 install-osx:
 	chsh -s /bin/bash
-	grep -qxF "# macOS key config" ~/.bashrc || { echo -e "\n# macOS key config\n"; cat $(CURDIR)/bash/macos-key-config.sh >> ~/.bashrc; }
-	grep -qxF 'export XDG_CONFIG_HOME="~/.config"' ~/.bashrc || echo 'export XDG_CONFIG_HOME="~/.config"' >> ~/.bashrc
-	brew update
+	grep -qF "BASH_SILENCE_DEPRECATION_WARNING=1" ~/.bashrc || cat bash/macos-key-config.sh >> ~/.bashrc
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
 	make install-tmux

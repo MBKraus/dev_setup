@@ -1,4 +1,5 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export XDG_CONFIG_HOME="~/.config"
 
 if [[ $OSTYPE == darwin* ]]; then
   # Lower the delay (in milliseconds) before a key starts repeating when held down.
