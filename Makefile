@@ -17,21 +17,28 @@ install-tmux:
 	ln -sf $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	tmux source-file ~/.tmux.conf
-	
+
+install-oh-my-bash:
+	rm -rf ~/.oh-my-bash
+	bash -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
 install-osx:
 	chsh -s /bin/bash
-	grep -qF "BASH_SILENCE_DEPRECATION_WARNING=1" ~/.bashrc || cat bash/macos-key-config.sh >> ~/.bashrc
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
 	make install-tmux
 	rm -rf ~/.config/alacritty
 	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
+	make install-oh-my-bash
+	grep -qF "BASH_SILENCE_DEPRECATION_WARNING=1" ~/.bashrc || cat bash/config.sh >> ~/.bashrc
 
 install-linux:
 	sudo apt update
 	sudo chown jupyter:mollievertex ~/.bashrc
 	sudo chown jupyter:mollievertex ~/.bash_profile
 	sudo chown jupyter:mollievertex /home/jupyter/.local/bin
+# oh-my-bash
+	make install-oh-my-bash
 # neovim
 	sudo apt install ripgrep fd-find xsel libfontconfig1-dev libfontconfig
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -48,3 +55,4 @@ install-linux:
 # tmux
 	sudo apt install tmux
 	make install-tmux
+
