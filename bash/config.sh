@@ -15,6 +15,12 @@ alias workbench-ssh='gcloud compute ssh "jupyter"@"instance-mikekraus" --tunnel-
 
 alias lazy='nvim -u ~/.config/nvim/init.lua'
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.local/bin/env"
+
 if [[ $OSTYPE == darwin* ]]; then
   # Lower the delay (in milliseconds) before a key starts repeating when held down.
   defaults write -g InitialKeyRepeat -int 12

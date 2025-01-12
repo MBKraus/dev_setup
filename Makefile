@@ -20,10 +20,10 @@ install-tmux:
 
 install-oh-my-bash:
 	rm -rf ~/.oh-my-bash
-	bash -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+	curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh | bash
 
 install-osx:
-	chsh -s /bin/bash
+	[ "$$(basename $$SHELL)" != "bash" ] && echo "Changing default shell to Bash..." && chsh -s /bin/bash || echo "Default shell is already Bash."
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
 	make install-tmux
