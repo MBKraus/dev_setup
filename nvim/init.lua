@@ -8,3 +8,20 @@ require("neo-tree").setup({
       },
     },
   })
+
+-- grant ability to copy into local systems clipboard from remote machines
+vim.opt.clipboard = 'unnamedplus'
+if vim.env.TMUX then
+  vim.g.clipboard = {
+    name = 'tmux',
+    copy = {
+      ['+'] = 'tmux load-buffer -w -',
+      ['*'] = 'tmux load-buffer -w -',
+    },
+    paste = {
+      ['+'] = 'tmux save-buffer -',
+      ['*'] = 'tmux save-buffer -',
+    },
+    cache_enabled = 1,
+  }
+end
