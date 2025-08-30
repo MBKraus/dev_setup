@@ -41,10 +41,10 @@ install-linux:
 	make install-oh-my-bash
 # neovim
 	sudo apt install ripgrep fd-find xsel libfontconfig1-dev libfontconfig
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-	sudo rm -rf /opt/nvim
+	curl -LO https://github.com/neovim/neovim-releases/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
+	sudo rm -rf /opt/nvim-linux-x86_64
 	sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-	sudo echo 'export PATH="$(PATH):/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
+	sudo echo 'export PATH="${PATH}:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
 	sudo echo 'export PATH="$(PATH):/opt/nvim-linux-x86_64/bin"' >> ~/.bash_profile
 # lazyvim
 	make install-lazyvim
@@ -55,4 +55,3 @@ install-linux:
 # tmux
 	sudo apt install tmux
 	make install-tmux
-
