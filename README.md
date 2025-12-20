@@ -16,9 +16,3 @@ On top of this we install the following Python LSP Server plugins:
     - Black
     - isort
     - Ruff
-
-- ripgrep + find to enhance Lazyvim's search and file-finding capabilities
-- telescope.nvim enabled
-- venv-selector (on <leader>-<cv>)
-
-
