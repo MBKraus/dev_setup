@@ -3,55 +3,31 @@
 install-lazyvim:
 	rm -rf ~/.config/nvim
 	ln -sf $(CURDIR)/nvim ~/.config/nvim
-	pip install black==24.10.0 --user
+	pip install black==25.11.0 --user
 	pip install isort==5.13.2 --user
-	pip install ruff==0.8.6 --user
-	pip install "python-lsp-server[all]"==1.12.0 --user
+	pip install ruff==0.14.0 --user
+	pip install "python-lsp-server[all]"==1.14.0 --user
 	pip install python-lsp-black==2.0.0 --user
-	pip install python-lsp-isort==0.2.0 --user
-	pip install python-lsp-ruff==2.2.2 --user
+	pip install python-lsp-isort==0.2.1 --user
+	pip install python-lsp-ruff==2.3.0 --user
 
 install-tmux:
 	rm -rf ~/.tmux.conf
 	rm -rf ~/.tmux/plugins/tpm
 	ln -sf $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	tmux source-file ~/.tmux.conf
 
 install-oh-my-bash:
 	rm -rf ~/.oh-my-bash
 	curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh | bash
 
-install-osx:
+dev-setup-osx:
 	[ "$$(basename $$SHELL)" != "bash" ] && echo "Changing default shell to Bash..." && chsh -s /bin/bash || echo "Default shell is already Bash."
 	brew install tmux neovim ripgrep fd font-fira-code-nerd-font
 	make install-lazyvim
-	make install-tmux
-	rm -rf ~/.config/alacritty
-	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
-	make install-oh-my-bash
-	grep -qF "BASH_SILENCE_DEPRECATION_WARNING=1" ~/.bashrc || cat bash/config.sh >> ~/.bashrc
+# 	make install-tmux
+# 	rm -rf ~/.config/alacritty
+# 	ln -sf $(CURDIR)/alacritty ~/.config/alacritty
+# 	make install-oh-my-bash
+# 	grep -qF "BASH_SILENCE_DEPRECATION_WARNING=1" ~/.bashrc || cat bash/config.sh >> ~/.bashrc
 
-install-linux:
-	sudo apt update
-	sudo chown jupyter:mollievertex ~/.bashrc
-	sudo chown jupyter:mollievertex ~/.bash_profile
-	sudo chown jupyter:mollievertex /home/jupyter/.local/bin
-# oh-my-bash
-	make install-oh-my-bash
-# neovim
-	sudo apt install ripgrep fd-find xsel libfontconfig1-dev libfontconfig
-	curl -LO https://github.com/neovim/neovim-releases/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
-	sudo rm -rf /opt/nvim-linux-x86_64
-	sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-	sudo echo 'export PATH="${PATH}:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
-	sudo echo 'export PATH="$(PATH):/opt/nvim-linux-x86_64/bin"' >> ~/.bash_profile
-# lazyvim
-	make install-lazyvim
-# alacritty
-	sudo apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	. $(HOME)/.cargo/env && cargo install alacritty
-# tmux
-	sudo apt install tmux
-	make install-tmux
